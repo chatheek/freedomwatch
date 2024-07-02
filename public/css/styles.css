@@ -1,0 +1,41 @@
+/* public/css/styles.css */
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin: 0 10px;
+    position: relative;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    padding: 0;
+    background: white;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+  
+  nav ul li:hover ul {
+    display: block;
+  }
+  
+  nav ul li ul li {
+    padding: 10px;
+    white-space: nowrap;
+  }
+  
+  nav ul li ul li a {
+    color: black;
+  }
+  

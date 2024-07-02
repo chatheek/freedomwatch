@@ -1,0 +1,161 @@
+<!-- views/blog-post.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= post.heading %></title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="<%= post.seoMetaDescription %>">
+    <meta name="keywords" content="<%= post.seoMetaTags.join(', ') %>">
+    <meta name="author" content="<%= post.author %>">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="<%= post.seoMetaTitle %>">
+    <meta property="og:description" content="<%= post.seoMetaDescription %>">
+    <meta property="og:image" content="<%= post.imageUrl %>">
+    <meta property="og:type" content="article">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= post.seoMetaTitle %>">
+    <meta name="twitter:description" content="<%= post.seoMetaDescription %>">
+    <meta name="twitter:image" content="<%= post.imageUrl %>">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Favicons -->
+  <link href="/img/logo1.png" rel="icon">
+  <link href="/img/logo1.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="/css/main.css" rel="stylesheet">
+
+    <style>
+        /* Add specific styles for blog post view */
+        .blog-post {
+            margin: 30px auto;
+            max-width: 800px;
+            padding: 20px;
+            word-wrap: break-word;
+        }
+        .blog-post img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .blog-post .back-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .content {
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header" class="header d-flex align-items-center sticky-top">
+        <div class="container position-relative d-flex align-items-center justify-content-between">
+    
+          <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <!-- <img src="assets/img/logo.png" alt=""> -->
+            <h1 class="sitename">Freedom Watch</h1>
+            <span>.</span>
+          </a>
+    
+          <nav id="navmenu" class="navmenu">
+            <ul>
+              <li><a href="/" class="active">Home<br></a></li>
+              
+              
+              <li class="dropdown"><a href=""><span>Blog</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  
+                  <li><a href="/blog/general">General</a></li>
+                  <li><a href="/blog/women">Women</a></li>
+                  <li><a href="/blog/children">Children</a></li>
+                  <li><a href="/blog/lgbtqia">LGBTQIA+</a></li>
+                </ul>
+              </li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/engage">Engage</a></li>
+            </ul>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+          </nav>
+    
+          
+    
+        </div>
+      </header>
+
+
+    <div class="blog-post">
+        <h1 class="display-4"><%= post.heading %></h1>
+        <% if (post.subHeading) { %>
+            <h2><%= post.subHeading %></h2>
+        <% } %>
+        <img src="<%= post.imageUrl %>" alt="<%= post.heading %>" class="img-fluid">
+        <p class="text-muted">Author: <%= post.author %></p>
+        <p class="text-muted">Published: <%= post.date.toLocaleDateString() %> <%= post.time %></p>
+        <div class="content">
+            <%= post.content %>
+        </div>
+        <a href="/" class="btn btn-primary back-link">Back to Blog</a>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <footer id="footer" class="footer dark-background">
+
+    
+
+        <div class="container copyright text-center mt-4">
+          <p>© <span>Freedom Watch</span> <strong class="px-1 sitename">- Chamath Theekshana -</strong> <span>Sri Lanka 2024</span></p>
+          <div class="credits">
+           
+            
+          </div>
+        </div>
+    
+      </footer>
+    
+      <!-- Scroll Top -->
+      <a href="" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    
+      <!-- Preloader -->
+      <div id="preloader"></div>
+    
+      <!-- Vendor JS Files -->
+      <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="/vendor/php-email-form/validate.js"></script>
+      <script src="/vendor/aos/aos.js"></script>
+      <script src="/vendor/glightbox/js/glightbox.min.js"></script>
+      <script src="/vendor/purecounter/purecounter_vanilla.js"></script>
+      <script src="/vendor/swiper/swiper-bundle.min.js"></script>
+    
+      <!-- Main JS File -->
+      <script src="/js/main.js"></script>
+</body>
+
+</html>

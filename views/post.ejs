@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= post.heading %></title>
+    <meta name="description" content="<%= post.seoMetaDescription %>">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: space-between;
+        }
+        nav ul li {
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        .post-content {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .post-content img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .post-content h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .post-content p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li>
+                <a href="/blog">Blog</a>
+                <ul>
+                    <li><a href="/blog/general">General</a></li>
+                    <li><a href="/blog/women">Women</a></li>
+                    <li><a href="/blog/children">Children</a></li>
+                    <li><a href="/blog/lgbtqia">LGBTQIA+</a></li>
+                </ul>
+            </li>
+            <li><a href="/engage">Engage</a></li>
+            <li><a href="/about">About Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="post-content">
+        <% if (post.imageUrl) { %>
+            <img src="<%= post.imageUrl %>" alt="<%= post.heading %>">
+        <% } %>
+        <h1><%= post.heading %></h1>
+        <p><%= post.content %></p>
+    </div>
+</body>
+</html>

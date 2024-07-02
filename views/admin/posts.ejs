@@ -1,0 +1,124 @@
+<!-- views/admin/posts.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Blog Posts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .blog-posts {
+            margin-top: 20px;
+        }
+
+        .post-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .post-table th, .post-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .post-table th {
+            background-color: #f2f2f2;
+        }
+
+        .post-table img {
+            max-width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .post-actions form {
+            display: inline;
+            margin-left: 10px; /* Adjust margin as needed */
+        }
+
+        .post-actions button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .post-actions button:hover {
+            background-color: #c82333;
+        }
+
+        .post-actions a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .post-actions a:hover {
+            text-decoration: underline;
+        }
+
+        /* Equal height for table rows */
+        .post-table tbody tr {
+            height: 100px; /* Adjust height as needed */
+        }
+    </style>
+</head>
+<body>
+    <h1>All Blog Posts</h1>
+    <a href="/admin/posts/new">Create New Post</a>
+
+    <div class="blog-posts">
+        <table class="post-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% posts.forEach(post => { %>
+                    <tr>
+                        <td>
+                            <img src="<%= post.imageUrl %>" alt="<%= post.title %>" class="post-image">
+                        </td>
+                        <td><%= post.heading %></td>
+                        <td><%= post.author %></td>
+                        <td><%= post.date.toLocaleDateString() %></td>
+                        <td class="post-actions">
+                            <a href="/admin/posts/<%= post._id %>/edit" style="text-decoration: none;">
+                                <button style="background-color: #046d3f;">Edit</button>
+                            </a>
+                            <form action="/admin/posts/<%= post._id %>/delete" method="POST" style="display: inline;">
+                                <button type="submit" style="color: rgb(244, 238, 238);">Delete</button>
+                              </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

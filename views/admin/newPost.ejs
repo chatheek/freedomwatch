@@ -1,0 +1,74 @@
+<!-- views/admin/newPost.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Post</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f7f7f7;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        .form-container form input,
+        .form-container form textarea,
+        .form-container form select,
+        .form-container form button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-container form button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-container form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Create New Post</h1>
+        <form action="/admin/posts" method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" required>
+            <input type="text" name="heading" placeholder="Heading" required>
+            <input type="text" name="subHeading" placeholder="Sub Heading" required>
+            <input type="text" name="author" placeholder="Author" required>
+            <input type="date" name="date" required>
+            <input type="time" name="time" required>
+            <textarea name="content" placeholder="Content" required></textarea>
+            <input type="text" name="seoMetaTitle" placeholder="SEO Meta Title" required>
+            <textarea name="seoMetaDescription" placeholder="SEO Meta Description" required></textarea>
+            <input type="text" name="seoMetaTags" placeholder="SEO Meta Tags (comma separated)" required>
+            <select name="category" required>
+                <option value="general">General</option>
+                <option value="women">Women</option>
+                <option value="children">Children</option>
+                <option value="lgbtqia">LGBTQIA+</option>
+            </select>
+            <button type="submit">Create Post</button>
+        </form>
+    </div>
+</body>
+</html>

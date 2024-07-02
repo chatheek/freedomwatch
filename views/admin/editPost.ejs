@@ -1,0 +1,133 @@
+<!-- views/admin/editPost.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="file"],
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        textarea,
+        select {
+            width: calc(100% - 22px); /* Adjust width as needed */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        select {
+            width: 100%;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        img{height: 250px;
+        width:400px}
+    </style>
+</head>
+<body>
+    <h1>Edit Post</h1>
+    <form action="/admin/posts/<%= post._id %>" method="POST" enctype="multipart/form-data">
+        <!-- File input with preview -->
+        <label for="imageInput">Choose Image:</label>
+        <input type="file" name="image" id="imageInput" onchange="updateFileNamePreview(this)">
+        <span id="fileNamePreview"></span> <!-- Display file name here -->
+
+        <!-- Display existing image if available -->
+        <% if (post.imageUrl) { %>
+            <p>Current Image:</p>
+            <img src="<%= post.imageUrl %>" alt="Current Image">
+        <% } %>
+
+        <!-- Labels and input fields -->
+        <label for="headingInput">Heading:</label>
+        <input type="text" id="headingInput" name="heading" value="<%= post.heading %>" required>
+
+        <label for="subHeadingInput">Subheading:</label>
+        <input type="text" id="subHeadingInput" name="subHeading" value="<%= post.subHeading %>" required>
+
+        <label for="authorInput">Author:</label>
+        <input type="text" id="authorInput" name="author" value="<%= post.author %>" required>
+
+        <label for="dateInput">Date:</label>
+        <input type="date" id="dateInput" name="date" value="<%= post.date.toISOString().split('T')[0] %>" required>
+
+        <label for="timeInput">Time:</label>
+        <input type="time" id="timeInput" name="time" value="<%= post.time %>" required>
+
+        <label for="contentInput">Content:</label>
+        <textarea id="contentInput" name="content" required><%= post.content %></textarea>
+
+        <label for="seoMetaTitleInput">SEO Meta Title:</label>
+        <input type="text" id="seoMetaTitleInput" name="seoMetaTitle" value="<%= post.seoMetaTitle %>" required>
+
+        <label for="seoMetaDescriptionInput">SEO Meta Description:</label>
+        <textarea id="seoMetaDescriptionInput" name="seoMetaDescription" required><%= post.seoMetaDescription %></textarea>
+
+        <label for="seoMetaTagsInput">SEO Meta Tags (comma-separated):</label>
+        <input type="text" id="seoMetaTagsInput" name="seoMetaTags" value="<%= post.seoMetaTags.join(',') %>" required>
+
+        <label for="categoryInput">Category:</label>
+        <select id="categoryInput" name="category" required>
+            <option value="general" <%= post.category === 'general' ? 'selected' : '' %>>General</option>
+            <option value="women" <%= post.category === 'women' ? 'selected' : '' %>>Women</option>
+            <option value="children" <%= post.category === 'children' ? 'selected' : '' %>>Children</option>
+            <option value="lgbtqia" <%= post.category === 'lgbtqia' ? 'selected' : '' %>>LGBTQIA+</option>
+        </select>
+
+        <button type="submit">Update Post</button>
+    </form>
+
+    <script>
+        function updateFileNamePreview(input) {
+            const fileNamePreview = document.getElementById('fileNamePreview');
+            fileNamePreview.textContent = input.files[0] ? input.files[0].name : 'No file chosen';
+        }
+    </script>
+</body>
+</html>

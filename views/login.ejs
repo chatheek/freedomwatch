@@ -1,0 +1,75 @@
+<!-- views/login.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  
+  <main>
+    <h1>Login Page</h1>
+    <form id="login-form">
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+      <p id="error-message" style="color: red;"></p>
+    </form>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyAG1aY31vqvDjZujv_LfPSYxyjuFkQ8RGc",
+        authDomain: "seoblog24-6dd99.firebaseapp.com",
+        projectId: "seoblog24-6dd99",
+        storageBucket: "seoblog24-6dd99.appspot.com",
+        messagingSenderId: "341164988764",
+        appId: "1:341164988764:web:84a44cd561144f6b3a8999",
+        measurementId: "G-DS3E048F9Y"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      document.getElementById('login-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        try {
+          const userCredential = await signInWithEmailAndPassword(auth, email, password);
+          const token = await userCredential.user.getIdToken();
+          document.cookie = `token=${token}; path=/`;
+          window.location.href = '/admin';
+        } catch (error) {
+          console.error('Error logging in:', error);
+          document.getElementById('error-message').textContent = 'Error logging in. Please check your credentials and try again.';
+        }
+      });
+    </script>
+    <style>
+      form {
+        max-width: 300px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      input {
+        margin-bottom: 10px;
+        padding: 8px;
+        font-size: 16px;
+      }
+
+      button {
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </main>
+</body>
+</html>

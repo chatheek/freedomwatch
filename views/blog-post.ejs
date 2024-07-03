@@ -116,7 +116,7 @@
         <p class="text-muted">Author: <%= post.author %></p>
         <p class="text-muted">Published: <%= post.date.toLocaleDateString() %> <%= post.time %></p>
         <div class="content">
-            <%= post.content %>
+            <%- post.content %>
         </div>
         <a href="/" class="btn btn-primary back-link">Back to Blog</a>
     </div>

@@ -7,7 +7,7 @@ const BlogPost = require('../models/BlogPost');
 router.get('/', async (req, res) => {
     try {
         // Find the latest 10 blog posts, sorted by date and time in descending order
-        const posts = await BlogPost.find().sort({ date: -1, time: -1 }).limit(10).exec();
+        const posts = await BlogPost.find().sort({ date: -1, time: -1 }).limit(9).exec();
         res.render('home', {
             title: 'Home',
             posts

@@ -141,7 +141,7 @@
                         <img src="<%= post.imageUrl %>" alt="<%= post.heading %>" class="card-img-top">
                         <div class="blog-post-content card-body">
                             <h2 class="card-title"><%= post.heading.substring(0, 25) %></h2>
-                            <p class="card-text"><%= post.content.substring(0, 25) %>...</p>
+                            <p class="card-text"><%- post.content.substring(0, 25) %>...</p>
                             <a href="/blog/post/<%= post._id %>" class="read-more btn btn-primary">Read More</a>
                         </div>
                     </div>

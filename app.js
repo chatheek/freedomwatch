@@ -162,6 +162,35 @@ app.get('/sitemap.xml', async (req, res) => {
       </url>`;
     }).join('');
 
+    // Static URLs
+    const staticUrls = `
+      <url>
+        <loc>https://www.freedomwatch.org.lk/blog/general</loc>
+        <lastmod>${new Date().toISOString()}</lastmod>
+      </url>
+      <url>
+        <loc>https://www.freedomwatch.org.lk/blog/women</loc>
+        <lastmod>${new Date().toISOString()}</lastmod>
+      </url>
+      <url>
+        <loc>https://www.freedomwatch.org.lk/blog/children</loc>
+        <lastmod>${new Date().toISOString()}</lastmod>
+      </url>
+      <url>
+        <loc>https://www.freedomwatch.org.lk/blog/lgbtqia</loc>
+        <lastmod>${new Date().toISOString()}</lastmod>
+      </url>
+      <url>
+        <loc>https://www.freedomwatch.org.lk/about</loc>
+        <lastmod>${new Date().toISOString()}</lastmod>
+      </url>
+      <url>
+        <loc>https://www.freedomwatch.org.lk/engage</loc>
+        <lastmod>${new Date().toISOString()}</lastmod>
+      </url>
+          
+    `;
+
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         <url>
@@ -169,6 +198,7 @@ app.get('/sitemap.xml', async (req, res) => {
           <lastmod>${new Date().toISOString()}</lastmod>
         </url>
         ${urls}
+        ${staticUrls}
       </urlset>`;
 
     res.header('Content-Type', 'application/xml');

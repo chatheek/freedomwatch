@@ -157,7 +157,7 @@ app.get('/sitemap.xml', async (req, res) => {
     const urls = posts.map(post => {
       const lastmod = post.updatedAt ? post.updatedAt.toISOString() : new Date().toISOString();
       return `<url>
-        <loc>${req.protocol}://${req.get('host')}/blog/${post.category}/${post._id}</loc>
+        <loc>${req.protocol}://${req.get('host')}/blog/post/${post._id}</loc>
         <lastmod>${lastmod}</lastmod>
       </url>`;
     }).join('');

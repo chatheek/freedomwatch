@@ -155,9 +155,10 @@ app.get('/sitemap.xml', async (req, res) => {
   try {
     const posts = await BlogPost.find();
     const urls = posts.map(post => {
+      const lastmod = post.updatedAt ? post.updatedAt.toISOString() : new Date().toISOString();
       return `<url>
         <loc>${req.protocol}://${req.get('host')}/blog/${post.category}/${post._id}</loc>
-        <lastmod>${post.updatedAt.toISOString()}</lastmod>
+        <lastmod>${lastmod}</lastmod>
       </url>`;
     }).join('');
 
@@ -174,9 +175,10 @@ app.get('/sitemap.xml', async (req, res) => {
     res.send(sitemap);
   } catch (error) {
     console.error('Error generating sitemap:', error);
-    res.status(500).send('Server Error');
+    res.status(500).send('Server Error: Could not generate sitemap');
   }
 });
+
 
 
 

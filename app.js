@@ -150,6 +150,35 @@ app.get('/about', (req, res) => {
 });
 
 
+// Dynamic sitemap generation route
+app.get('/sitemap.xml', async (req, res) => {
+  try {
+    const posts = await BlogPost.find();
+    const urls = posts.map(post => {
+      return `<url>
+        <loc>${req.protocol}://${req.get('host')}/blog/${post.category}/${post._id}</loc>
+        <lastmod>${post.updatedAt.toISOString()}</lastmod>
+      </url>`;
+    }).join('');
+
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        <url>
+          <loc>${req.protocol}://${req.get('host')}</loc>
+          <lastmod>${new Date().toISOString()}</lastmod>
+        </url>
+        ${urls}
+      </urlset>`;
+
+    res.header('Content-Type', 'application/xml');
+    res.send(sitemap);
+  } catch (error) {
+    console.error('Error generating sitemap:', error);
+    res.status(500).send('Server Error');
+  }
+});
+
+
 
 
 app.listen(port, () => {

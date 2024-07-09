@@ -80,6 +80,27 @@
         .content {
             overflow-wrap: break-word;
         }
+        .ad-container {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .ad-box {
+        text-align: center;
+    }
+
+    @media (max-width: 768px) {
+        .ad-container {
+            margin: 0 10px;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .ad-container {
+            margin: 0 20px;
+        }
+    }
     </style>
 
     
@@ -131,8 +152,13 @@
         <p class="text-muted">Author: <%= post.author %></p>
         <p class="text-muted">Published: <%= post.date.toLocaleDateString() %> <%= post.time %></p>
 
-        <script async="async" data-cfasync="false" src="//pl23733593.highrevenuenetwork.com/43c6416652413e4ad45a3dbb250fcad8/invoke.js"></script>
-        <div id="container-43c6416652413e4ad45a3dbb250fcad8"></div>
+        <div class="ad-container mt-4 mb-4">
+          <p class="text-center text-muted">Automatic Ads by Third Party</p>
+          <div class="ad-box">
+              <script async="async" data-cfasync="false" src="//pl23733593.highrevenuenetwork.com/43c6416652413e4ad45a3dbb250fcad8/invoke.js"></script>
+              <div id="container-43c6416652413e4ad45a3dbb250fcad8"></div>
+          </div>
+      </div>
 
         
 

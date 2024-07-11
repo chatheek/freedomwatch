@@ -41,6 +41,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve the robots.txt file
+app.use('/robots.txt', express.static(path.join(__dirname, 'robots.txt')));
+
 
 
 

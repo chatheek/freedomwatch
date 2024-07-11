@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /login/
+
+User-agent: Googlebot
+Disallow: /admin/
+Disallow: /login/
+
+Sitemap: https://www.freedomwatch.org.lk/sitemap.xml
